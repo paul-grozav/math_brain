@@ -8,7 +8,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include src/math/grade1/subdir.mk
+-include src/math/grade4/lexicalAnalysis/subdir.mk
+-include src/math/grade4/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk

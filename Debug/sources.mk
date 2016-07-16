@@ -23,6 +23,7 @@ C_UPPER_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-src/math/grade1 \
+src/math/grade4/lexicalAnalysis \
+src/math/grade4 \
 src \
 
