@@ -1,11 +1,13 @@
-#include "MathematicalExpressionParser.hpp"
-#include "../../math_brain/parser/MathematicalExpressionParser.hpp"
+#include "mathematical_expression_parser.hpp"
+#include "../../../math_brain/parser/mathematical_expression_parser.hpp"
 
 #include <iostream>
 
 using namespace math_brain::parser;
 
 namespace unit_testing
+{
+namespace math_brain
 {
 namespace parser
 {
@@ -75,4 +77,5 @@ bool testing__()
 }
 
 } // namespace parser
+} // namespace math_brain
 } // namespace unit_testing

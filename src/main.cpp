@@ -1,12 +1,12 @@
-#include "math_brain/parser/MathematicalExpressionParser.hpp"
-#include "unit_testing/unit_testing.hpp"
+#include "math_brain/parser/mathematical_expression_parser.hpp"
+#include "unit_testing/math_brain/unit_testing.hpp"
 
 #include <iostream>
 #include <string>
 
 int main(/*int argc, char **argv*/)
 {
-    if ( !unit_testing::testing__() )
+    if ( !unit_testing::math_brain::testing__() )
     {
         std::cerr << "Something's not right. Unit tests failed" << std::endl;
         return 1;

@@ -1,5 +1,8 @@
 #ifndef MATH_BRAIN__PARSER__MATHEMATICAL_EXPRESSION_PARSER_HPP
 #define MATH_BRAIN__PARSER__MATHEMATICAL_EXPRESSION_PARSER_HPP
+
+#include "../number.hpp"
+
 namespace math_brain
 {
 namespace parser
@@ -20,7 +23,12 @@ bool is_digit(const char c);
  */
 bool is_valid_sign(const char c);
 
-void parse_number(const char *&c);
+/**
+ * @param c - A pointer to a C string. This pointer must point to the first
+ * digit of a number
+ * @return A Number object pointing to the given string pointer.
+ */
+number parse_number(const char *&c);
 
 void parse(const char *c);
 

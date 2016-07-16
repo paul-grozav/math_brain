@@ -1,8 +1,9 @@
-#include "MathematicalExpressionParser.hpp"
+#include "mathematical_expression_parser.hpp"
+#include "../number.hpp"
 
 #include <iostream>
 #include <cstring> // strlen
-#include <string>
+//#include <vector>
 
 namespace math_brain
 {
@@ -33,19 +34,17 @@ bool is_valid_sign(const char c)
     ;
 }
 
-void parse_number(const char *&c)
+number parse_number(const char *&c)
 {
-    char *number = new char[strlen(c)];
-    size_t i = 0;
-    number[i++] = *c++;
-    while(is_digit(*c))
+    const char *number_pointer = c;
+    size_t number_length = 0;
+    do
     {
-        number[i++] = *c++;
+        number_length++;
+        c++;
     }
-    number[i] = '\0'; // end of C-style string
-
-    std::cout << "got number=\"" << number << "\"" << std::endl;
-    delete number;
+    while(is_digit(*c));
+    return number(number_pointer, number_length);
 }
 
 void parse(const char *c)
@@ -54,7 +53,11 @@ void parse(const char *c)
     {
         if( is_digit(*c) )
         {
-            parse_number(c);
+            number n = parse_number(c);
+
+            std::cout << "got number=\"";
+            n.print_to_cout();
+            std::cout << "\"" << std::endl;
         }
         else if ( is_valid_sign(*c) )
         {

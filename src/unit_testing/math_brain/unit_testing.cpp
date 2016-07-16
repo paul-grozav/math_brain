@@ -1,6 +1,8 @@
-#include "parser/MathematicalExpressionParser.hpp"
+#include "parser/mathematical_expression_parser.hpp"
 
 namespace unit_testing
+{
+namespace math_brain
 {
 
 bool testing__()
@@ -11,4 +13,5 @@ bool testing__()
     ;
 }
 
+} // namespace math_brain
 } // namespace unit_testing
