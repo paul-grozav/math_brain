@@ -16,6 +16,8 @@ int main(/*int argc, char **argv*/)
     std::cin >> input_str;
     const char *input = input_str.c_str();
     std::cout << "Your input: " << input << std::endl;
-    math_brain::parser::parse( input );
+    math_brain::parser::expression exp;
+    math_brain::parser::expression::parse( input, &exp );
+    exp.print_objects();
     return 0;
 }

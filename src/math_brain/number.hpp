@@ -21,10 +21,24 @@ namespace math_brain
 class number
 {
 private:
+    /**
+     * A pointer to the first character of a number.
+     * if this pointer is NULL then this number is not set(initialized).
+     */
     const char *_pointer;
+    /**
+     * The number of characters that define the number.
+     * If this value is 0 then the number must not be set(initialized) and
+     * the _pointer should be NULL.
+     */
     size_t _length;
 
 public:
+    /**
+     * Creates a number instance pointing to no acctual number.
+     */
+    number();
+
     /**
      * Creates a number instance using the parameters
      * @param pointer - A pointer to a constant character sequence. This
@@ -32,6 +46,13 @@ public:
      * @param length - The number of characters that define the number.
      */
     number(const char *pointer, size_t length);
+
+    /**
+     * @param pointer - A pointer to a constant character sequence. This
+     * pointer points to the first character of a number.
+     * @param length - The number of characters that define the number.
+     */
+    void set(const char *pointer, size_t length);
 
     /**
      * Print number to std::cout.

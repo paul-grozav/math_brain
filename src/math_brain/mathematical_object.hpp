@@ -1,7 +1,5 @@
-#ifndef MATH_BRAIN__NUMBER_HPP
-#define MATH_BRAIN__NUMBER_HPP
-
-#include <cstddef> // size_t
+#ifndef MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
+#define MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
 
 namespace math_brain
 {
@@ -18,27 +16,47 @@ namespace math_brain
  * instance is gone.
  * @author Tancredi-Paul Grozav <paul@grozav.info>
  */
-class Number
+class mathematical_object
 {
+public:
+    enum type
+    {
+          TYPE_UNDEFINED
+        , TYPE_NUMBER
+        , TYPE_BASIC_ARITHMETIC_OPERATION
+    };
+
 private:
-    const char *_pointer;
-    size_t _length;
+    void *_pointer;
+    type _object_type;
 
 public:
     /**
-     * Creates a Number instance using the parameters
-     * @param pointer - A pointer to a constant character sequence. This
-     * pointer points to the first character of a number.
-     * @param length - The number of characters that define the number.
+     * Creates a mathematical_object instance with undefined type and null
+     * pointer.
      */
-    Number(const char *pointer, size_t length);
+    mathematical_object();
 
     /**
-     * Print number to std::cout.
+     * Creates a mathematical_object instance using the given parameters.
+     * @param pointer - A pointer to a mathematical object of a type defined
+     * above
+     * @param object_type - The type of object. Must be one of the types
+     * enumerated above.
      */
-    void print_to_cout();
+    mathematical_object(void *pointer, type object_type);
+
+    /**
+     *
+     */
+    void set(void *pointer, type object_type);
+
+    void *get_object();
+
+    type get_object_type();
+
 };
 
 } // namespace math_brain
 
-#endif // MATHBRAIN__NUMBER_HPP
+#endif // MATHBRAIN__MATHEMATICAL_OBJECT_HPP
