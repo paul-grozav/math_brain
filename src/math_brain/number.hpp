@@ -58,6 +58,15 @@ public:
      * Print number to std::cout.
      */
     void print_to_cout();
+
+    /**
+     * @param string - A pointer to a C string. This pointer must point to the first
+     * digit of a number
+     * @param number - A number that will be initialized with the characters
+     * starting at the given pointer.
+     */
+    void static parse_number(const char *&string, number &number);
+
 };
 
 } // namespace math_brain

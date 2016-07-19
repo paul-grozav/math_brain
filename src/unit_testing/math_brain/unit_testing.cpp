@@ -1,4 +1,4 @@
-#include "parser/mathematical_expression_parser.hpp"
+#include "parser/parser.hpp"
 
 namespace unit_testing
 {

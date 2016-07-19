@@ -1,3 +1,4 @@
+#include "parser/parser.hpp"
 #include "number.hpp"
 
 #include <iostream> // std::cout
@@ -32,6 +33,19 @@ void number::print_to_cout()
         std::cout.write(_pointer+i, 1);
     }
     std::cout.flush();
+}
+
+void number::parse_number(const char *&string, number &number)
+{
+    const char *number_pointer = string;
+    size_t number_length = 0;
+    do
+    {
+        number_length++;
+        string++;
+    }
+    while(parser::is_digit(*string));
+    number.set(number_pointer, number_length);
 }
 
 } // namespace math_brain

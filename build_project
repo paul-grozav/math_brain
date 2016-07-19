@@ -6,7 +6,7 @@ echo "========================================"
 
 echo "Started building process at "$(date +"%Y-%m-%d %H:%M:%S.%N")" ..."
 
-rm -Rf bin &&
+[ -d bin ] && rm -Rf bin
 mkdir bin &&
 cd bin &&
 cmake .. &&

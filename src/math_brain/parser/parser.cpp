@@ -1,0 +1,38 @@
+#include "parser.hpp"
+#include "../number.hpp"
+
+#include <iostream>
+
+using namespace std;
+
+namespace math_brain
+{
+namespace parser
+{
+
+bool is_digit(const char c)
+{
+    return
+           c == '0'
+        || c == '1'
+        || c == '2'
+        || c == '3'
+        || c == '4'
+        || c == '5'
+        || c == '6'
+        || c == '7'
+        || c == '8'
+        || c == '9'
+    ;
+}
+
+bool is_valid_sign(const char c)
+{
+    return
+           c == '+'
+        || c == '-'
+    ;
+}
+
+} // namespace parser
+} // namespace math_brain

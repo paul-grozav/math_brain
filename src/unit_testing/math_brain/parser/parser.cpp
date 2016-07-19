@@ -1,5 +1,5 @@
-#include "mathematical_expression_parser.hpp"
-#include "../../../math_brain/parser/mathematical_expression_parser.hpp"
+#include "parser.hpp"
+#include "../../../math_brain/parser/parser.hpp"
 
 #include <iostream>
 

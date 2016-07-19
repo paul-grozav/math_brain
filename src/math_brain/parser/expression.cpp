@@ -1,4 +1,5 @@
-#include "mathematical_expression_parser.hpp"
+#include "expression.hpp"
+#include "parser.hpp"
 #include "../number.hpp"
 
 #include <iostream>
@@ -14,10 +15,10 @@ void expression::parse(const char *c, expression *expression)
 {
     while( *c != '\0' )
     {
-        if( is_digit(*c) )
+        if( math_brain::parser::is_digit(*c) )
         {
             number *n = new number();
-            parse_number(c, *n);
+            number::parse_number(c, *n);
 
             expression->_objects.push_back( mathematical_object(
                 n, mathematical_object::TYPE_NUMBER
@@ -96,45 +97,6 @@ void expression::print_objects()
             cout << "basic_arithmetic_operation=\'" << c << "\'" << endl;
         }
     }
-}
-
-
-
-bool is_digit(const char c)
-{
-    return
-           c == '0'
-        || c == '1'
-        || c == '2'
-        || c == '3'
-        || c == '4'
-        || c == '5'
-        || c == '6'
-        || c == '7'
-        || c == '8'
-        || c == '9'
-    ;
-}
-
-bool is_valid_sign(const char c)
-{
-    return
-           c == '+'
-        || c == '-'
-    ;
-}
-
-void parse_number(const char *&string, number &number)
-{
-    const char *number_pointer = string;
-    size_t number_length = 0;
-    do
-    {
-        number_length++;
-        string++;
-    }
-    while(is_digit(*string));
-    number.set(number_pointer, number_length);
 }
 
 } // namespace parser
