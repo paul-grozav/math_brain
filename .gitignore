@@ -1,0 +1,11 @@
+# documentation directory
+documentation
+
+# Doxygen warnings log
+Doxygen_warnings.log
+
+# Build directory
+bin
+
+# Build log
+build_project.log
