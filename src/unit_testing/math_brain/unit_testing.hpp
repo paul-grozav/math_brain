@@ -1,8 +1,14 @@
 #ifndef UNIT_TESTING__MATH_BRAIN__UNIT_TESTING_HPP
 #define UNIT_TESTING__MATH_BRAIN__UNIT_TESTING_HPP
 
+/**
+ * Holds unit testing cases for math_brain application
+ */
 namespace unit_testing
 {
+/**
+ * Unit testing math_brain applications
+ */
 namespace math_brain
 {
 

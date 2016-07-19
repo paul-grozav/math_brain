@@ -3,6 +3,9 @@
 
 #include <cstddef> // size_t
 
+/**
+ * math_brain namespace holds all the project logic.
+ */
 namespace math_brain
 {
 

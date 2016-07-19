@@ -19,6 +19,9 @@ namespace math_brain
 class mathematical_object
 {
 public:
+    /**
+     * Types of mathematical_object.
+     */
     enum type
     {
           TYPE_UNDEFINED
@@ -27,7 +30,14 @@ public:
     };
 
 private:
+    /**
+     * @brief void pointer to a mathematical object. like a number or a
+     * arithmetic operation.
+     */
     void *_pointer;
+    /**
+     * @brief Type of object the pointer points to.
+     */
     type _object_type;
 
 public:
@@ -47,12 +57,23 @@ public:
     mathematical_object(void *pointer, type object_type);
 
     /**
-     *
+     * @brief set Sets the pointer and object type of this instance.
+     * @param pointer - A pointer to a mathematical object of a type defined
+     * above
+     * @param object_type - The type of object. Must be one of the types
      */
     void set(void *pointer, type object_type);
 
+    /**
+     * @brief get_object Get object void pointer.
+     * @return The pointer to the object.
+     */
     void *get_object();
 
+    /**
+     * @brief get_object_type Return the object type.
+     * @return The object type
+     */
     type get_object_type();
 
 };

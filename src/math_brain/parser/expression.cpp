@@ -11,7 +11,7 @@ namespace math_brain
 namespace parser
 {
 
-void expression::parse(const char *c, expression *expression)
+void expression::parse(const char *c, expression *expr)
 {
     while( *c != '\0' )
     {
@@ -20,13 +20,13 @@ void expression::parse(const char *c, expression *expression)
             number *n = new number();
             number::parse_number(c, *n);
 
-            expression->_objects.push_back( mathematical_object(
+            expr->_objects.push_back( mathematical_object(
                 n, mathematical_object::TYPE_NUMBER
             ) );
         }
         else if ( is_valid_sign(*c) )
         {
-            expression->_objects.push_back( mathematical_object(
+            expr->_objects.push_back( mathematical_object(
                 static_cast<void*>(const_cast<char*>(c)),
                 mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION
             ) );

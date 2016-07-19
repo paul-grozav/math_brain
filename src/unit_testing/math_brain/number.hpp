@@ -10,20 +10,21 @@ namespace math_brain
 
 // ========================================================================== //
 /**
- * A number (instance) only exists as long as the expression exists. While
- * expression "22+112" exists, THAT number "22" exists. When the expression
- * does not exist anymore, THAT number "22" does not exist anymore. It's like
- * "What number? I don't see it, where is it?"
- * A certain number is a pointer to a sequence of characters in an expression.
- * When that expression is gone, that certain number (instance) is gone.
- * The notion of "A number" still exists, just as the class exists after the
- * instance is gone.
- * @author Tancredi-Paul Grozav <paul@grozav.info>
+ * Unit testing a number
  */
 class number
 {
 private:
+    /**
+     * A pointer to the first character of a number.
+     * if this pointer is NULL then this number is not set(initialized).
+     */
     const char *_pointer;
+    /**
+     * The number of characters that define the number.
+     * If this value is 0 then the number must not be set(initialized) and
+     * the _pointer should be NULL.
+     */
     size_t _length;
 
 public:

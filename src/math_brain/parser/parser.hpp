@@ -8,6 +8,9 @@
 
 namespace math_brain
 {
+/**
+ * parser namespace holds logic about parsing math text.
+ */
 namespace parser
 {
 

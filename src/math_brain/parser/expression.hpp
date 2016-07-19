@@ -11,19 +11,29 @@ namespace math_brain
 namespace parser
 {
 
+/**
+ * @brief An expression parser.
+ */
 class expression
 {
 private:
+    /**
+     * @brief Objects involved in the expression.
+     */
     std::vector<mathematical_object> _objects;
 
 public:
     /**
      * Create a new expression object from a C string.
-     * @param c - A pointer to a C style string that contains the expression
+     * @param c - A pointer to a C style string that contains the expression.
+     * @param expr - An expression that should be created based on the string.
      * that should be parsed as an expression object.
      */
-    static void parse(const char *c, expression *expression);
+    static void parse(const char *c, expression *expr);
 
+    /**
+     * @brief Default expression constructor
+     */
     expression();
 
     /**
