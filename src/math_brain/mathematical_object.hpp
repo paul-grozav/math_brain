@@ -22,7 +22,7 @@ public:
     /**
      * Types of mathematical_object.
      */
-    enum type
+    enum object_type
     {
           TYPE_UNDEFINED
         , TYPE_NUMBER
@@ -38,7 +38,7 @@ private:
     /**
      * @brief Type of object the pointer points to.
      */
-    type _object_type;
+    object_type _object_type;
 
 public:
     /**
@@ -51,18 +51,18 @@ public:
      * Creates a mathematical_object instance using the given parameters.
      * @param pointer - A pointer to a mathematical object of a type defined
      * above
-     * @param object_type - The type of object. Must be one of the types
+     * @param type - The type of object. Must be one of the types
      * enumerated above.
      */
-    mathematical_object(void *pointer, type object_type);
+    mathematical_object(void *pointer, object_type type);
 
     /**
      * @brief set Sets the pointer and object type of this instance.
      * @param pointer - A pointer to a mathematical object of a type defined
      * above
-     * @param object_type - The type of object. Must be one of the types
+     * @param type - The type of object. Must be one of the types
      */
-    void set(void *pointer, type object_type);
+    void set(void *pointer, object_type type);
 
     /**
      * @brief get_object Get object void pointer.
@@ -74,7 +74,7 @@ public:
      * @brief get_object_type Return the object type.
      * @return The object type
      */
-    type get_object_type();
+    object_type get_object_type();
 
 };
 

@@ -11,7 +11,7 @@ mkdir bin &&
 cd bin &&
 cmake .. &&
 make &&
-echo "Build finished. Here's your executable: bin/math_brain"
+echo "Build finished. Here's your executable: bin/math_brain_app"
 
 echo -n "========================================"
 echo "========================================"

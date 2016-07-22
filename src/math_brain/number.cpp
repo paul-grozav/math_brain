@@ -1,51 +1,52 @@
 #include "parser/parser.hpp"
 #include "number.hpp"
 
-#include <iostream> // std::cout
+#include <iostream> // cout
+#include <cstddef> // size_t
+
+using namespace std;
 
 namespace math_brain
 {
 
-number::number():
-    _pointer(NULL), _length(0)
+number::number()
 {
 }
 
-number::number(const char *pointer, size_t length):
-    _pointer(pointer), _length(length)
+number::number(string &str):
+    _str(str)
 {
 }
 
-void number::set(const char *pointer, size_t length)
+void number::set(string &str)
 {
-    _pointer = pointer;
-    _length = length;
+    _str = str;
 }
+
 
 void number::print_to_cout()
 {
-    if ( _pointer == NULL || _length == 0 )
+    if ( _str == "" )
     {
         return;
     }
-    for (size_t i=0; i<_length; i++)
-    {
-        std::cout.write(_pointer+i, 1);
-    }
-    std::cout.flush();
+    cout << _str;
+    cout.flush();
 }
 
-void number::parse_number(const char *&string, number &number)
+bool number::operator==(const number& other) const
 {
-    const char *number_pointer = string;
-    size_t number_length = 0;
-    do
-    {
-        number_length++;
-        string++;
-    }
-    while(parser::is_digit(*string));
-    number.set(number_pointer, number_length);
+    return _str == other._str;
 }
+
+//size_t number::parse_number(string &str, size_t index, number &number)
+//{
+//    size_t str_len = str.size();
+//    string s;
+//    for (size_t i = index; i < str_len && parser::is_digit(str[i]); i++)
+//        s.push_back(str[i]);
+//    number.set(s);
+//    return s.size();
+//}
 
 } // namespace math_brain

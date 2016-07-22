@@ -2,6 +2,7 @@
 #include "parser.hpp"
 #include "../number.hpp"
 
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -11,31 +12,35 @@ namespace math_brain
 namespace parser
 {
 
-void expression::parse(const char *c, expression *expr)
+void expression::parse(string &str, expression *expr)
 {
-    while( *c != '\0' )
+    size_t str_len = str.size();
+    for ( size_t i = 0; i < str_len; i++ )
     {
-        if( math_brain::parser::is_digit(*c) )
+        if( math_brain::parser::is_digit(str[i]) )
         {
-            number *n = new number();
-            number::parse_number(c, *n);
+            size_t number_length = 0;
+            do
+                number_length++;
+            while(math_brain::parser::is_digit(str[i+number_length]));
+            string s = str.substr(i, number_length);
 
             expr->_objects.push_back( mathematical_object(
-                n, mathematical_object::TYPE_NUMBER
+                new number(s), mathematical_object::TYPE_NUMBER
             ) );
+            i += number_length-1; // skip number characters
         }
-        else if ( is_valid_sign(*c) )
+        else if ( is_valid_sign(str[i]) )
         {
+            void *object_pointer = static_cast<void*>(new char(str[i]));
             expr->_objects.push_back( mathematical_object(
-                static_cast<void*>(const_cast<char*>(c)),
+                object_pointer,
                 mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION
             ) );
-            c++;
         }
         else
         {
-            cout << "Ignoring invalid sign:'" << *c << "'" << endl;
-            c++; // ignore character and go to next one
+            cout << "Ignoring invalid sign:'" << str[i] << "'" << endl;
         }
     }
 }
@@ -47,7 +52,7 @@ expression::expression()
 expression::~expression()
 {
     vector<mathematical_object>::iterator it;
-    mathematical_object::type object_type;
+    mathematical_object::object_type object_type;
     void *object_pointer = 0;
     for (it = _objects.begin(); it != _objects.end(); it++)
     {
@@ -62,7 +67,7 @@ expression::~expression()
         )
         {
             // this points to the acctual string, no need to delete it
-//            delete static_cast<char*>(object_pointer);
+            delete static_cast<char*>(object_pointer);
         }
     }
 }
@@ -70,7 +75,7 @@ expression::~expression()
 void expression::print_objects()
 {
     vector<mathematical_object>::iterator it;
-    mathematical_object::type object_type;
+    mathematical_object::object_type object_type;
     void *object_pointer = 0;
     for (it = _objects.begin(); it != _objects.end(); it++)
     {
@@ -97,6 +102,11 @@ void expression::print_objects()
             cout << "basic_arithmetic_operation=\'" << c << "\'" << endl;
         }
     }
+}
+
+vector<mathematical_object> expression::get_objects()
+{
+    return _objects;
 }
 
 } // namespace parser

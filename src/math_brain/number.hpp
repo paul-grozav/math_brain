@@ -1,7 +1,7 @@
 #ifndef MATH_BRAIN__NUMBER_HPP
 #define MATH_BRAIN__NUMBER_HPP
 
-#include <cstddef> // size_t
+#include <string> // std::string
 
 /**
  * math_brain namespace holds all the project logic.
@@ -28,13 +28,7 @@ private:
      * A pointer to the first character of a number.
      * if this pointer is NULL then this number is not set(initialized).
      */
-    const char *_pointer;
-    /**
-     * The number of characters that define the number.
-     * If this value is 0 then the number must not be set(initialized) and
-     * the _pointer should be NULL.
-     */
-    size_t _length;
+    std::string _str;
 
 public:
     /**
@@ -46,16 +40,15 @@ public:
      * Creates a number instance using the parameters
      * @param pointer - A pointer to a constant character sequence. This
      * pointer points to the first character of a number.
-     * @param length - The number of characters that define the number.
      */
-    number(const char *pointer, size_t length);
+    number(std::string &str);
 
     /**
      * @param pointer - A pointer to a constant character sequence. This
      * pointer points to the first character of a number.
      * @param length - The number of characters that define the number.
      */
-    void set(const char *pointer, size_t length);
+    void set(std::string &str);
 
     /**
      * Print number to std::cout.
@@ -63,12 +56,24 @@ public:
     void print_to_cout();
 
     /**
-     * @param string - A pointer to a C string. This pointer must point to the first
-     * digit of a number
-     * @param number - A number that will be initialized with the characters
-     * starting at the given pointer.
+     * @brief operator == Will compare two numbers by comparing their string
+     * representation.
+     * @param other - The other number that is compared with the current
+     * instance
+     * @return True if and only if the two numbers are equal.
      */
-    void static parse_number(const char *&string, number &number);
+    bool operator==(const number& other) const;
+
+//    /**
+//     * @note not used
+//     * @param str - A string reference that contains the number to be parser
+//     * @param index - position in given string, where the number starts.
+//     * @param number - A number that will be initialized with the characters
+//     * starting at the given pointer.
+//     * @return Number of digits in the number.
+//     */
+//    size_t static parse_number(std::string &str, size_t index, number &number);
+
 
 };
 

@@ -4,8 +4,6 @@
 #include "../number.hpp"
 #include "../mathematical_object.hpp"
 
-#include <vector> // std:vector
-
 namespace math_brain
 {
 /**

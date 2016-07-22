@@ -4,6 +4,7 @@
 #include "../number.hpp"
 #include "../mathematical_object.hpp"
 
+#include <string> // std::string
 #include <vector> // std:vector
 
 namespace math_brain
@@ -25,11 +26,11 @@ private:
 public:
     /**
      * Create a new expression object from a C string.
-     * @param c - A pointer to a C style string that contains the expression.
+     * @param str - A string that contains the expression.
      * @param expr - An expression that should be created based on the string.
      * that should be parsed as an expression object.
      */
-    static void parse(const char *c, expression *expr);
+    static void parse(std::string &str, expression *expr);
 
     /**
      * @brief Default expression constructor
@@ -46,6 +47,15 @@ public:
      * Print objects in expression.
      */
     void print_objects();
+
+    /**
+     * @brief get_objects Returns a copy of the vector of mathematical objects
+     * that are member of this equation.
+     * @return Returns a copy of the vector of mathematical objects that are
+     * member of this equation.
+     */
+    std::vector<mathematical_object> get_objects();
+
 };
 
 } // namespace parser
