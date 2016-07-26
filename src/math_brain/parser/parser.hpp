@@ -1,5 +1,5 @@
-#ifndef MATH_BRAIN__PARSER__PARSER_HPP
-#define MATH_BRAIN__PARSER__PARSER_HPP
+#ifndef MATH_BRAIN_PARSER_PARSER_HPP
+#define MATH_BRAIN_PARSER_PARSER_HPP
 
 #include "../number.hpp"
 #include "../mathematical_object.hpp"
@@ -30,4 +30,4 @@ bool is_valid_sign(const char c);
 
 } // namespace parser
 } // namespace math_brain
-#endif // MATH_BRAIN__PARSER__PARSER_HPP
+#endif // MATH_BRAIN_PARSER_PARSER_HPP

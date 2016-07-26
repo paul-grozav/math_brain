@@ -1,19 +1,13 @@
-#ifndef MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
-#define MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
+#ifndef MATH_BRAIN_MATHEMATICAL_OBJECT_HPP
+#define MATH_BRAIN_MATHEMATICAL_OBJECT_HPP
 
 namespace math_brain
 {
 
 // ========================================================================== //
 /**
- * A Number (instance) only exists as long as the expression exists. While
- * expression "22+112" exists, THAT number "22" exists. When the expression
- * does not exist anymore, THAT number "22" does not exist anymore. It's like
- * "What number? I don't see it, where is it?"
- * A certain number is a pointer to a sequence of characters in an expression.
- * When that expression is gone, that certain number (instance) is gone.
- * The notion of "A number" still exists, just as the class exists after the
- * instance is gone.
+ * A mathematical object is an instance of a number or an arithmetic operation,
+ * etc. Expressions are made of mathematical objects.
  * @author Tancredi-Paul Grozav <paul@grozav.info>
  */
 class mathematical_object
@@ -31,7 +25,7 @@ public:
 
 private:
     /**
-     * @brief void pointer to a mathematical object. like a number or a
+     * @brief void pointer to a mathematical object like a number or an
      * arithmetic operation.
      */
     void *_pointer;
@@ -80,4 +74,4 @@ public:
 
 } // namespace math_brain
 
-#endif // MATHBRAIN__MATHEMATICAL_OBJECT_HPP
+#endif // MATH_BRAIN_MATHEMATICAL_OBJECT_HPP

@@ -11,6 +11,6 @@ int main(/*int argc, char **argv*/)
     std::cout << "Your input: " << input << std::endl;
     math_brain::parser::expression exp;
     math_brain::parser::expression::parse( input, &exp );
-    exp.print_objects();
+    exp.print_objects_to_stream(std::cout);
     return 0;
 }

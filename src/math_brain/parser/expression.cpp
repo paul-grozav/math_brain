@@ -12,6 +12,7 @@ namespace math_brain
 namespace parser
 {
 
+// ========================================================================== //
 void expression::parse(string &str, expression *expr)
 {
     size_t str_len = str.size();
@@ -44,11 +45,11 @@ void expression::parse(string &str, expression *expr)
         }
     }
 }
-
+// ========================================================================== //
 expression::expression()
 {
 }
-
+// ========================================================================== //
 expression::~expression()
 {
     vector<mathematical_object>::iterator it;
@@ -71,8 +72,8 @@ expression::~expression()
         }
     }
 }
-
-void expression::print_objects()
+// ========================================================================== //
+void expression::print_objects_to_stream(ostream &output_stream)
 {
     vector<mathematical_object>::iterator it;
     mathematical_object::object_type object_type;
@@ -83,31 +84,34 @@ void expression::print_objects()
         object_pointer = it->get_object();
         if (object_type == mathematical_object::TYPE_UNDEFINED)
         {
-            cout << "Undefined object type at " << object_pointer << endl;
+            output_stream << "Undefined object type at " << object_pointer
+                << endl;
         }
         else if (
             object_type == mathematical_object::TYPE_NUMBER
         )
         {
             number &n = *(static_cast<number*>(object_pointer));
-            cout << "number=";
-            n.print_to_cout();
-            cout << endl;
+            output_stream << "number=";
+            n.print_to_stream(output_stream);
+            output_stream << endl;
         }
         else if (
             object_type == mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION
         )
         {
             char &c = *(static_cast<char*>(const_cast<void*>(object_pointer)));
-            cout << "basic_arithmetic_operation=\'" << c << "\'" << endl;
+            output_stream << "basic_arithmetic_operation=\'" << c << "\'"
+                << endl;
         }
     }
 }
-
+// ========================================================================== //
 vector<mathematical_object> expression::get_objects()
 {
     return _objects;
 }
+// ========================================================================== //
 
 } // namespace parser
 } // namespace math_brain

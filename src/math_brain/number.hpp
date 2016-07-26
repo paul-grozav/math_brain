@@ -1,7 +1,8 @@
-#ifndef MATH_BRAIN__NUMBER_HPP
-#define MATH_BRAIN__NUMBER_HPP
+#ifndef MATH_BRAIN_NUMBER_HPP
+#define MATH_BRAIN_NUMBER_HPP
 
 #include <string> // std::string
+#include <ostream> // std::ostream
 
 /**
  * math_brain namespace holds all the project logic.
@@ -11,55 +12,79 @@ namespace math_brain
 
 // ========================================================================== //
 /**
- * A number (instance) only exists as long as the expression exists. While
- * expression "22+112" exists, THAT number "22" exists. When the expression
- * does not exist anymore, THAT number "22" does not exist anymore. It's like
- * "What number? I don't see it, where is it?"
- * A certain number is a pointer to a sequence of characters in an expression.
- * When that expression is gone, that certain number (instance) is gone.
- * The notion of "A number" still exists, just as the class exists after the
- * instance is gone.
+ * A number is defined by it's string representation.
  * @author Tancredi-Paul Grozav <paul@grozav.info>
  */
 class number
 {
 private:
     /**
-     * A pointer to the first character of a number.
-     * if this pointer is NULL then this number is not set(initialized).
+     * The string representation of the number.
      */
     std::string _str;
 
 public:
     /**
-     * Creates a number instance pointing to no acctual number.
+     * Creates a number instance with an empty string as it's representation.
      */
     number();
 
     /**
-     * Creates a number instance using the parameters
-     * @param pointer - A pointer to a constant character sequence. This
-     * pointer points to the first character of a number.
+     * Creates a number instance using the given string representation.
+     * @param str - A number represented as a string. This value will be copied
+     * into this number instance.
      */
     number(std::string &str);
 
     /**
-     * @param pointer - A pointer to a constant character sequence. This
-     * pointer points to the first character of a number.
-     * @param length - The number of characters that define the number.
+     * Creates a number instance using the given string representation.
+     * @param c_str - A number represented as constant char array. A new string
+     * will be created from this char[] and it will be assigned to this
+     * instance.
+     */
+    number(const char c_str[]);
+
+    /**
+     * Set a new string representation for the current instance.
+     * @param str - A number represented as a string. This value will be copied
+     * into this number instance.
      */
     void set(std::string &str);
 
     /**
-     * Print number to std::cout.
+     * Set a new string representation for the current instance.
+     * @param c_str - A number represented as constant char array. A new string
+     * will be created from this char[] and it will be assigned to this
+     * instance.
      */
-    void print_to_cout();
+    void set(const char c_str[]);
+
+    /**
+     * @return A copy of the string representation of this number.
+     */
+    std::string get_string_representation() const;
+
+    /**
+     * Print number to the given output stream and flush it.
+     * @param output_stream - The output stream where the number should be
+     * printed.
+     */
+    void print_to_stream(std::ostream& output_stream);
+
+    /**
+     * @brief Will compare two numbers by comparing their string representation.
+     * @param other - The other number that is compared with the current
+     * instance.
+     * @return True if and only if the two numbers are equal.
+     */
+    bool equals(const number& other) const;
 
     /**
      * @brief operator == Will compare two numbers by comparing their string
      * representation.
+     * @see equals().
      * @param other - The other number that is compared with the current
-     * instance
+     * instance.
      * @return True if and only if the two numbers are equal.
      */
     bool operator==(const number& other) const;
@@ -79,4 +104,4 @@ public:
 
 } // namespace math_brain
 
-#endif // MATHBRAIN__NUMBER_HPP
+#endif // MATH_BRAIN_NUMBER_HPP

@@ -10,6 +10,7 @@ namespace math_brain
 namespace parser
 {
 
+// ========================================================================== //
 bool is_digit(const char c)
 {
     return
@@ -25,7 +26,7 @@ bool is_digit(const char c)
         || c == '9'
     ;
 }
-
+// ========================================================================== //
 bool is_valid_sign(const char c)
 {
     return
@@ -33,6 +34,7 @@ bool is_valid_sign(const char c)
         || c == '-'
     ;
 }
+// ========================================================================== //
 
 } // namespace parser
 } // namespace math_brain

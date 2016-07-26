@@ -11,6 +11,7 @@ ADD_LIBRARY(math_brain
     src/math_brain/parser/parser.cpp
     src/math_brain/parser/expression.cpp
     src/math_brain/number.cpp
+    src/math_brain/arithmetic.cpp
     src/math_brain/mathematical_object.cpp
 )
 
@@ -28,6 +29,7 @@ target_link_libraries(math_brain_app
 # Create an executable named math_brain_app and build it using the main.cpp file
 add_executable(math_brain_unit_testing
     src/unit_testing/main.cpp
+    src/unit_testing/number.cpp
     src/unit_testing/parser.cpp
     src/unit_testing/expression.cpp
 )

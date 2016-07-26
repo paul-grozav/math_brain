@@ -1,7 +1,6 @@
 #include "parser/parser.hpp"
 #include "number.hpp"
 
-#include <iostream> // cout
 #include <cstddef> // size_t
 
 using namespace std;
@@ -9,36 +8,57 @@ using namespace std;
 namespace math_brain
 {
 
-number::number()
+// ========================================================================== //
+number::number():
+    _str("")
 {
 }
-
+// ========================================================================== //
 number::number(string &str):
     _str(str)
 {
 }
-
+// ========================================================================== //
+number::number(const char c_str[]):
+    _str(string(c_str))
+{
+}
+// ========================================================================== //
 void number::set(string &str)
 {
     _str = str;
 }
-
-
-void number::print_to_cout()
+// ========================================================================== //
+void number::set(const char c_str[])
 {
-    if ( _str == "" )
+    _str = string(c_str);
+}
+// ========================================================================== //
+std::string number::get_string_representation() const
+{
+    return _str;
+}
+// ========================================================================== //
+void number::print_to_stream(ostream& output_stream)
+{
+    if ( _str.size() == 0 )
     {
         return;
     }
-    cout << _str;
-    cout.flush();
+    output_stream << _str;
+    output_stream.flush();
 }
-
-bool number::operator==(const number& other) const
+// ========================================================================== //
+bool number::equals(const number& other) const
 {
     return _str == other._str;
 }
-
+// ========================================================================== //
+bool number::operator==(const number& other) const
+{
+    return equals(other);
+}
+// ========================================================================== //
 //size_t number::parse_number(string &str, size_t index, number &number)
 //{
 //    size_t str_len = str.size();
@@ -48,5 +68,6 @@ bool number::operator==(const number& other) const
 //    number.set(s);
 //    return s.size();
 //}
+// ========================================================================== //
 
 } // namespace math_brain
