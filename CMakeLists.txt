@@ -13,12 +13,13 @@ ADD_LIBRARY(math_brain
     src/math_brain/number.cpp
     src/math_brain/arithmetic.cpp
     src/math_brain/mathematical_object.cpp
+    src/math_brain/binary_operator.cpp
 )
 
 # ==============================- CREATE APP -================================ #
 # Create an executable named math_brain_app and build it using the main.cpp file
 add_executable(math_brain_app
-    src/main.cpp
+    src/app.cpp
 )
 # Link the math_braing_app executable with the math_brain library
 target_link_libraries(math_brain_app

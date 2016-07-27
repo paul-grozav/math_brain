@@ -19,11 +19,11 @@ number add(const number &a, const number &b)
 
     // Make them have same size by adding trailing zeroes
     if(as_size > bs_size){
-            bs.insert(0, as_size-bs_size, '0');
-            bs_size = bs.size();
+        bs.insert(0, as_size-bs_size, '0');
+        bs_size += as_size-bs_size;
     }else if(bs_size > as_size){
-            as.insert(0, bs_size-as_size, '0');
-            as_size = as.size();
+        as.insert(0, bs_size-as_size, '0');
+        as_size += bs_size-as_size;
     }
 
     char tempSum[2] = {0, 0};
@@ -43,7 +43,8 @@ number add(const number &a, const number &b)
     add_digits(as[0], bs[0], tempSum);
     result[1] = tempSum[0];
     char* r = static_cast<char*>(result);
-    if(tempSum[1] != 1) r++;
+    if(tempSum[1] != 1)
+        r++;
 
     number nr(r);
     delete result;

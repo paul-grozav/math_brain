@@ -9,7 +9,7 @@ echo "Started building process at "$(date +"%Y-%m-%d %H:%M:%S.%N")" ..."
 [ -d bin ] && rm -Rf bin
 mkdir bin &&
 cd bin &&
-cmake .. &&
+cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug &&
 make &&
 echo "Build finished. Here's your executable: bin/math_brain_app"
 

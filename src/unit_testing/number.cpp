@@ -23,7 +23,7 @@ TEST(number, equality_properties)
     ASSERT_TRUE( a.equals(b) );
     ASSERT_TRUE( b.equals(a) );
 
-    // equality transitive ( ( a == b && b == c ) => a == c )
+    // equality is transitive ( ( a == b && b == c ) => a == c )
     ASSERT_TRUE( a.equals(b) );
     ASSERT_TRUE( b.equals(c) );
     ASSERT_TRUE( c.equals(a) );

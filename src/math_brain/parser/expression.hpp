@@ -42,8 +42,7 @@ public:
     expression();
 
     /**
-     * This method will delete every pointer to every object in the _objects
-     * list.
+     * This method will delete every object in the _objects list.
      */
     ~expression();
 
@@ -63,6 +62,12 @@ public:
      * member of this equation.
      */
     std::vector<mathematical_object> get_objects();
+
+    /**
+     * @brief simplify Simplifies the expression by appliying operations.
+     * For example: "2+3" is simplified to "5".
+     */
+    void simplify();
 
 };
 
