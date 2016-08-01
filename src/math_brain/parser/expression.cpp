@@ -47,9 +47,9 @@ expression::expression()
 {
 }
 // ========================================================================== //
-expression::~expression()
-{
-}
+//expression::~expression()
+//{
+//}
 // ========================================================================== //
 void expression::print_objects_to_stream(ostream &output_stream)
 {
@@ -84,40 +84,90 @@ void expression::print_objects_to_stream(ostream &output_stream)
     }
 }
 // ========================================================================== //
+void expression::print(ostream &output_stream)
+{
+    vector<mathematical_object>::iterator it;
+    for (it = _objects.begin(); it != _objects.end(); it++)
+    {
+        it->print_to_stream(output_stream);
+    }
+}
+// ========================================================================== //
 vector<mathematical_object> expression::get_objects()
 {
     return _objects;
 }
 // ========================================================================== //
-void expression::simplify()
+bool expression::simplify_addition(vector<expression> *steps)
 {
-    // if only 1 object then there's nothing to simplify. Maybe call simplify on
-    // that object ?? like "10/5"
-    if(_objects.size() > 1)
-    {
-        // left number
-        mathematical_object *left_operand_object = &(_objects[0]);
-        if(left_operand_object->get_object_type() !=
-            mathematical_object::TYPE_NUMBER)
-        {
-            return;
-        }
-        number &left_number =
-            *(static_cast<number*>(left_operand_object));
-
-        // right number
-        mathematical_object *right_operand_object = &(_objects[2]);
-        if(left_operand_object->get_object_type() !=
-            mathematical_object::TYPE_NUMBER)
-        {
-            return;
-        }
-        number &right_number =
-            *(static_cast<number*>(right_operand_object));
-
-        number result = arithmetic::add(left_number, right_number);
-        result.print_to_stream(std::cout);
+    expression new_expr;
+    expression *expr = this;
+    if(steps->size() > 0){
+        expr = &(steps->at( steps->size()-1 ));
     }
+//    cout << "simplify_addition("; expr->print(cout); cout << ")" << endl;
+    size_t size = expr->_objects.size();
+    for(size_t i=0; i<size; i++)
+    {
+        mathematical_object &object = expr->_objects.at(i);
+        if(object.get_object_type() ==
+            mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION &&
+            object.get_string_representation() == "+")
+        {
+//            cout << "Found: "
+//                << expr->_objects.at(i-1).get_string_representation() << "+"
+//                << expr->_objects.at(i+1).get_string_representation() <<
+//                endl;
+            number new_object = arithmetic::add(
+                *(static_cast<number*>(&(expr->_objects.at(i-1)))),
+                *(static_cast<number*>(&(expr->_objects.at(i+1)))) );
+            new_expr._objects.pop_back(); // remove left operand
+            new_expr._objects.push_back(new_object);
+            i++; // remove right operand
+
+            for(size_t j=i+1; j<size; j++)
+            {
+                // copy object to new expression
+                new_expr._objects.push_back(expr->_objects.at(j));
+            }
+
+//            cout << "new expression " << new_expr._objects.size() << ":";
+//            new_expr.print(cout);
+//            cout << endl;
+
+            steps->push_back(new_expr);
+            return true;
+        }else{
+            new_expr._objects.push_back(object);// copy object to new expression
+        }
+    }
+    return false;
+}
+// ========================================================================== //
+bool expression::simplify_once(vector<expression> *steps)
+{
+    return false || simplify_addition(steps);
+}
+// ========================================================================== //
+void expression::simplify(vector<expression> *steps)
+{
+    while( simplify_once(steps) )
+    {
+    }
+}
+// ========================================================================== //
+bool expression::equals(const expression& other) const
+{
+    bool ret = true;
+    ret = ret && ( _objects.size() == other._objects.size() );
+    for (size_t i=0; i<_objects.size(); ++i)
+        ret = ret && _objects[i] == other._objects[i];
+    return ret;
+}
+// ========================================================================== //
+bool expression::operator==(const expression& other) const
+{
+    return equals(other);
 }
 // ========================================================================== //
 

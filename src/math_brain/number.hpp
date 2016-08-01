@@ -33,24 +33,6 @@ public:
      */
     number(const char c_str[]);
 
-    /**
-     * @brief Will compare two numbers by comparing their string representation.
-     * @param other - The other number that is compared with the current
-     * instance.
-     * @return True if and only if the two numbers are equal.
-     */
-    bool equals(const number& other) const;
-
-    /**
-     * @brief operator == Will compare two numbers by comparing their string
-     * representation.
-     * @see equals().
-     * @param other - The other number that is compared with the current
-     * instance.
-     * @return True if and only if the two numbers are equal.
-     */
-    bool operator==(const number& other) const;
-
 };
 
 } // namespace math_brain

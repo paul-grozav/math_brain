@@ -1,0 +1,24 @@
+#!/bin/bash
+# Author: Tancredi-Paul Grozav <paul@grozav.info>
+(
+echo -n "========================================"
+echo "========================================"
+
+echo "Started testing build at "$(date +"%Y-%m-%d %H:%M:%S.%N")" ..."
+
+echo -n "Testing..."
+status=""
+doxygen Doxygen.config > /dev/null
+if [ bin/math_brain_unit_testing ] &&
+    [ "$(cat Doxygen_warnings.log | wc -l)" == "0" ];
+then
+    status="All good!"
+else
+    status="Not so good!"
+fi
+
+echo " Done testing build. $status"
+
+echo -n "========================================"
+echo "========================================"
+) 2>&1 | tee -a $0.log

@@ -41,17 +41,24 @@ public:
      */
     expression();
 
+//    /**
+//     * This method will delete every object in the _objects list.
+//     */
+//    ~expression();
+
     /**
-     * This method will delete every object in the _objects list.
+     * Print objects in expression with details.
+     * @param output_stream - The output stream where the objects should be
+     * printed.
      */
-    ~expression();
+    void print_objects_to_stream(std::ostream& output_stream);
 
     /**
      * Print objects in expression.
      * @param output_stream - The output stream where the objects should be
      * printed.
      */
-    void print_objects_to_stream(std::ostream& output_stream);
+    void print(std::ostream& output_stream);
 
     /**
      * @brief get_objects Returns a copy of the vector of mathematical objects
@@ -66,8 +73,63 @@ public:
     /**
      * @brief simplify Simplifies the expression by appliying operations.
      * For example: "2+3" is simplified to "5".
+     * @param steps - The steps it took to simplify the expression.
      */
-    void simplify();
+    void simplify(std::vector<expression> *steps);
+
+    /**
+     * @brief simplify an expression by one step.
+     * @param steps - The steps it took to simplify the expression.
+     * @return True if and only if a simpler expression was added to the list of
+     * steps.
+     * @note Example: simplify_once() on "1+2+3+4" might become "3+3+4" by
+     * solving 1+2 and copying +3+4.
+     * @note maybe we could make this private, it's called by simplify()
+     */
+    bool simplify_once(std::vector<expression> *steps);
+
+    /**
+     * @brief solve the first addition found and copy the rest of the objects.
+     *
+     * Takes this instance or the last expression from the vector, and solves
+     * the first addition it finds there. The rest of the objects are copied to
+     * the new expression.
+     * @param steps - The steps it took to simplify the expression.
+     * @return True if and only if a simpler expression was added to the list of
+     * steps.
+     * @note Example: simplify_addition() on "1+2+3+4" might become "3+7" by
+     * solving 1+2 and 3+4.
+     */
+    bool simplify_addition(std::vector<expression> *steps);
+
+    /**
+     * Get the index of the first mathematical object that has gt given object
+     * type.
+     * @param object_type
+     * @param start_index
+     * @return
+     */
+    size_t index_of_object_type(mathematical_object::object_type object_type,
+        size_t start_index);
+
+    /**
+     * @brief Will compare two expressions by comparing their string
+     * representation and their type.
+     * @param other - The other expression that is compared with the current
+     * instance.
+     * @return True if and only if the two expressions are equal.
+     */
+    bool equals(const expression& other) const;
+
+    /**
+     * @brief operator == Will compare two expressions by comparing their string
+     * representation.
+     * @see equals().
+     * @param other - The other expression that is compared with the current
+     * instance.
+     * @return True if and only if the two expressions are equal.
+     */
+    bool operator==(const expression& other) const;
 
 };
 

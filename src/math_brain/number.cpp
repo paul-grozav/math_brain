@@ -17,15 +17,5 @@ number::number(const char c_str[]):
 {
 }
 // ========================================================================== //
-bool number::equals(const number& other) const
-{
-    return _str == other._str;
-}
-// ========================================================================== //
-bool number::operator==(const number& other) const
-{
-    return equals(other);
-}
-// ========================================================================== //
 
 } // namespace math_brain

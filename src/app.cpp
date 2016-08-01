@@ -11,10 +11,19 @@ int main(/*int argc, char **argv*/)
     std::cout << "Your input: " << input << std::endl;
     math_brain::parser::expression exp;
     math_brain::parser::expression::parse( input, &exp );
-    std::cout << std::endl << "Expression is made of:" << std::endl;
-    exp.print_objects_to_stream(std::cout);
-    std::cout << std::endl << "Simplified expression:";
-    exp.simplify();
+//    std::cout << std::endl << "Expression is made of:" << std::endl;
+//    exp.print_objects_to_stream(std::cout);
+    std::cout << std::endl << "Solving expression:" << std::endl;
+    std::vector<math_brain::parser::expression> steps;
+    exp.simplify(&steps);
+    exp.print(std::cout);
+    std::cout << std::endl;
+    for(size_t i=0; i<steps.size(); i++)
+    {
+        std::cout << "=";
+        steps[i].print(std::cout);
+        std::cout << std::endl;
+    }
     std::cout << std::endl;
     return 0;
 }

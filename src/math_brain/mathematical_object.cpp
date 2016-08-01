@@ -41,5 +41,15 @@ std::string mathematical_object::get_string_representation() const
     return _str;
 }
 // ========================================================================== //
+bool mathematical_object::equals(const mathematical_object& other) const
+{
+    return _str == other._str && _object_type == other._object_type;
+}
+// ========================================================================== //
+bool mathematical_object::operator==(const mathematical_object& other) const
+{
+    return equals(other);
+}
+// ========================================================================== //
 
 } // namespace math_brain

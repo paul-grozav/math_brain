@@ -42,8 +42,9 @@ public:
 
     /**
      * Creates a mathematical object instance using the given parameters.
-     * @param type - The type of object. Must be one of the types
-     * enumerated above.
+     * @param str - The string representation of the mathematical object.
+     * @param type - The type of object. Must be one of the types enumerated
+     * above.
      */
     mathematical_object(std::string &str, object_type type);
 
@@ -53,6 +54,8 @@ public:
      * @param c_str - A mathematical object represented as constant char array.
      * A new string will be created from this char[] and it will be assigned to
      * this instance.
+     * @param type - The type of object. Must be one of the types enumerated
+     * above.
      */
     mathematical_object(const char c_str[], object_type type);
 
@@ -73,6 +76,25 @@ public:
      * printed.
      */
     void print_to_stream(std::ostream& output_stream);
+
+    /**
+     * @brief Will compare two mathematical objects by comparing their string
+     * representation and their type.
+     * @param other - The other mathematical object that is compared with the
+     * current instance.
+     * @return True if and only if the two mathematical objects are equal.
+     */
+    bool equals(const mathematical_object& other) const;
+
+    /**
+     * @brief operator == Will compare two mathematical objects by comparing
+     * their string representation.
+     * @see equals().
+     * @param other - The other mathematical object that is compared with the
+     * current instance.
+     * @return True if and only if the two mathematical objects are equal.
+     */
+    bool operator==(const mathematical_object& other) const;
 
 };
 
