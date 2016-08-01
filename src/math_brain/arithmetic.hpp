@@ -57,6 +57,14 @@ number add(const number &a, const number &b);
  * add_digits('1', '8', r); // r will become {'0',1} because of 1+8+(1 carry in)
  */
 void add_digits(char a, char b, char *r);
+
+/**
+ * @brief subtract_digits
+ * @param a
+ * @param b
+ * @param r
+ */
+void subtract_digits(char a, char b, char *r);
 // ========================================================================== //
 
 } // namespace arithmetic

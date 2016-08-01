@@ -86,3 +86,32 @@ TEST(number, addition_large_number)
         "00000000000000000000000000000000000000000000000000000000000000000000");
     ASSERT_EQ(r, add(a, b));
 }
+
+TEST(number, subtract_digits)
+{
+    char r[2];
+
+    // no carry in and no carry out
+    r[0] = 0; r[1] = 0;
+    subtract_digits('8', '1', r);
+    ASSERT_EQ('7', r[0]);
+    ASSERT_EQ(0, r[1]);
+
+    // no carry in and carry out
+    r[0] = 0; r[1] = 0;
+    subtract_digits('1', '9', r);
+    ASSERT_EQ('2', r[0]);//11-9=2 borrowed a ten
+    ASSERT_EQ(1, r[1]);
+
+    // carry in and no carry out
+    r[0] = 0; r[1] = 1;
+    subtract_digits('7', '1', r);
+    ASSERT_EQ('5', r[0]);
+    ASSERT_EQ(0, r[1]);
+
+    // carry in and carry out
+    r[0] = 0; r[1] = 1;
+    subtract_digits('1', '9', r);
+    ASSERT_EQ('1', r[0]);
+    ASSERT_EQ(1, r[1]);
+}

@@ -51,7 +51,7 @@ number add(const number &a, const number &b)
     return nr;
 }
 // ========================================================================== //
-void add_digits(char a, char b, char* r)
+void add_digits(char a, char b, char *r)
 {
     // set the result. We subtract 48 because '1'(49)+'1'(49) = 49+49-48 = 50
     r[0] = a + b + r[1] - 1 * 48;
@@ -60,6 +60,16 @@ void add_digits(char a, char b, char* r)
         r[1] = 1; // set the carryOut ( r[1] )
     } else {
         r[1] = 0; // set the carryOut ( r[1] )
+    }
+}
+// ========================================================================== //
+void subtract_digits(char a, char b, char *r) {
+    r[0] = a - b - r[1] + 48;
+    if (r[0] >= '0'){
+        r[1] = 0;
+    } else {
+        r[0] = r[0] + 10;
+        r[1] = 1;
     }
 }
 // ========================================================================== //

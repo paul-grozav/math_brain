@@ -20,7 +20,6 @@ void expression::parse(string &str, expression *expr)
     size_t str_len = str.size();
     for ( size_t i = 0; i < str_len; i++ )
     {
-        // delete is called in ~mathematical_object, the owner
         if( math_brain::parser::is_digit(str[i]) )
         {
             size_t number_length = 0;
