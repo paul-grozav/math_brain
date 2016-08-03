@@ -148,9 +148,17 @@ number subtract(const number &a, const number &b)
     // Remove leading zeroes:
     // 100-099=001
     char* r = static_cast<char*>(result);
-    while(r[0] == '0')
+    while(r<(result+as_size) && r[0] == '0') // do not go beyond boundary
     {
         r++;
+    }
+    if(r==result+as_size)
+    {
+        // if al 0es were removed and no digit remained, then keep the last 0 as
+        // the number
+        // Example: 321-321=000. All 0es are removed in while above, and here we
+        // add back the last zero.
+        r--;
     }
 
     number nr(r);

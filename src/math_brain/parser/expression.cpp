@@ -46,10 +46,6 @@ expression::expression()
 {
 }
 // ========================================================================== //
-//expression::~expression()
-//{
-//}
-// ========================================================================== //
 void expression::print_objects_to_stream(ostream &output_stream)
 {
     vector<mathematical_object>::iterator it;
@@ -95,7 +91,7 @@ vector<mathematical_object> expression::get_objects()
     return _objects;
 }
 // ========================================================================== //
-bool expression::simplify_addition(vector<expression> *steps)
+bool expression::simplify_addition_and_subtraction(vector<expression> *steps)
 {
     expression new_expr;
     expression *expr = this;
@@ -109,15 +105,44 @@ bool expression::simplify_addition(vector<expression> *steps)
         mathematical_object &object = expr->_objects.at(i);
         if(object.get_object_type() ==
             mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION &&
-            object.get_string_representation() == "+")
-        {
+            object.get_string_representation() == "+"
+        ){
 //            cout << "Found: "
 //                << expr->_objects.at(i-1).get_string_representation() << "+"
 //                << expr->_objects.at(i+1).get_string_representation() <<
 //                endl;
             number new_object = arithmetic::add(
                 *(static_cast<number*>(&(expr->_objects.at(i-1)))),
-                *(static_cast<number*>(&(expr->_objects.at(i+1)))) );
+                *(static_cast<number*>(&(expr->_objects.at(i+1))))
+            );
+            new_expr._objects.pop_back(); // remove left operand
+            new_expr._objects.push_back(new_object);
+            i++; // remove right operand
+
+            for(size_t j=i+1; j<size; j++)
+            {
+                // copy object to new expression
+                new_expr._objects.push_back(expr->_objects.at(j));
+            }
+
+//            cout << "new expression " << new_expr._objects.size() << ":";
+//            new_expr.print(cout);
+//            cout << endl;
+
+            steps->push_back(new_expr);
+            return true;
+        }else if(object.get_object_type() ==
+            mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION &&
+            object.get_string_representation() == "-"
+        ){
+//            cout << "Found: "
+//                << expr->_objects.at(i-1).get_string_representation() << "+"
+//                << expr->_objects.at(i+1).get_string_representation() <<
+//                endl;
+            number new_object = arithmetic::subtract(
+                *(static_cast<number*>(&(expr->_objects.at(i-1)))),
+                *(static_cast<number*>(&(expr->_objects.at(i+1))))
+            );
             new_expr._objects.pop_back(); // remove left operand
             new_expr._objects.push_back(new_object);
             i++; // remove right operand
@@ -143,7 +168,8 @@ bool expression::simplify_addition(vector<expression> *steps)
 // ========================================================================== //
 bool expression::simplify_once(vector<expression> *steps)
 {
-    return false || simplify_addition(steps);
+    return false
+        || simplify_addition_and_subtraction(steps);
 }
 // ========================================================================== //
 void expression::simplify(vector<expression> *steps)

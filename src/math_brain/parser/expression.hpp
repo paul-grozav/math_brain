@@ -41,11 +41,6 @@ public:
      */
     expression();
 
-//    /**
-//     * This method will delete every object in the _objects list.
-//     */
-//    ~expression();
-
     /**
      * Print objects in expression with details.
      * @param output_stream - The output stream where the objects should be
@@ -87,18 +82,19 @@ public:
     bool simplify_once(std::vector<expression> *steps);
 
     /**
-     * @brief solve the first addition found and copy the rest of the objects.
+     * @brief solve the first addition or subtraction found and copy the rest of
+     * the objects.
      *
      * Takes this instance or the last expression from the vector, and solves
-     * the first addition it finds there. The rest of the objects are copied to
-     * the new expression.
+     * the first addition or subtraction it finds there. The rest of the objects
+     * are copied to the new expression.
      * @param steps - The steps it took to simplify the expression.
      * @return True if and only if a simpler expression was added to the list of
      * steps.
-     * @note Example: simplify_addition() on "1+2+3+4" might become "3+7" by
-     * solving 1+2 and 3+4.
+     * @note Example: simplify_addition() on "1+2-3+4" might become "3-3+4" by
+     * solving 1+2 and copying -3+4.
      */
-    bool simplify_addition(std::vector<expression> *steps);
+    bool simplify_addition_and_subtraction(std::vector<expression> *steps);
 
     /**
      * @brief Will compare two expressions by comparing their string

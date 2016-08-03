@@ -83,14 +83,22 @@ TEST(number, addition_properties)
     ASSERT_EQ( add(zero, a), add(a, zero) );
 }
 // ========================================================================== //
-TEST(number, addition_large_number)
+TEST(number, addition_test)
 {
-    number a("99999999999999999999999999999999999999999999999999999999999999999"
-        "9999999999999999999999999999999999999999999999999999999999999999999");
-    number b("1");
-    number r("10000000000000000000000000000000000000000000000000000000000000000"
-        "00000000000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_EQ(r, add(a, b));
+    // Large numbers
+    {
+        number a("999999999999999999999999999999999999999999999999999999999999"
+            "9999999999999999999999999999999999999999999999999999999999999999");
+        number b("1");
+        number r("1000000000000000000000000000000000000000000000000000000000000"
+            "0000000000000000000000000000000000000000000000000000000000000000");
+        ASSERT_EQ(r, add(a, b));
+    }
+    // add two zeroes
+    {
+        number a("0"), b("0"), r("0");
+        ASSERT_EQ(r, add(a, b));
+    }
 }
 // ========================================================================== //
 TEST(number, comparison_less_than)
@@ -239,6 +247,13 @@ TEST(number, subtraction_test)
         number a("100");
         number b("999");
         ASSERT_THROW(subtract(a, b), std::runtime_error);
+    }
+    // subtract equal numbers
+    {
+        number a("7");
+        number b("7");
+        number r("0");
+        ASSERT_EQ(r, subtract(a, b));
     }
     // subtract random numbers
     {
