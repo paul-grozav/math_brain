@@ -67,29 +67,27 @@ void expression::print_objects_to_stream(ostream &output_stream)
         else if ( object_type == mathematical_object::TYPE_NUMBER )
         {
             number &n = *(static_cast<number*>(object));
-            output_stream << "number=";
-            n.print_to_stream(output_stream);
-            output_stream << endl;
+            output_stream << "number=" << n << endl;
         }
         else if (
             object_type == mathematical_object::TYPE_BASIC_ARITHMETIC_OPERATION
         )
         {
             binary_operator &op = *(static_cast<binary_operator*>(object));
-            output_stream << "basic_arithmetic_operation=\"";
-            op.print_to_stream(output_stream);
-            output_stream << "\"" << endl;
+            output_stream << "basic_arithmetic_operation=\"" << op << endl;
         }
     }
 }
 // ========================================================================== //
-void expression::print(ostream &output_stream)
+std::string expression::get_string_representation() const
 {
-    vector<mathematical_object>::iterator it;
+    string ret = "";
+    vector<mathematical_object>::const_iterator it;
     for (it = _objects.begin(); it != _objects.end(); it++)
     {
-        it->print_to_stream(output_stream);
+        ret += it->get_string_representation();
     }
+    return ret;
 }
 // ========================================================================== //
 vector<mathematical_object> expression::get_objects()
@@ -167,6 +165,11 @@ bool expression::equals(const expression& other) const
 bool expression::operator==(const expression& other) const
 {
     return equals(other);
+}
+// ========================================================================== //
+::std::ostream& operator<<(::std::ostream &os, const expression &ex)
+{
+    return os << ex.get_string_representation();
 }
 // ========================================================================== //
 

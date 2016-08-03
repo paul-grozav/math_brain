@@ -33,7 +33,54 @@ public:
      */
     number(const char c_str[]);
 
+    /**
+     * Checks if the current instance(number) is less than another(given)
+     * number. To determine this it compares the strings, digit by digit.
+     * @param n - The other number that will be compared with this instance.
+     * @return True if and only if the current instance is strictly smaller than
+     * the other given instance.
+     */
+    bool less_than(const number &n) const;
+
+    /**
+     * @brief operator > Will check if the current number is less than another
+     * one given.
+     * @see less_than(const number &n).
+     * @param other - The other number that is compared with the current
+     * instance.
+     * @return True if and only if the current number is strictly smaller than
+     * the other one.
+     */
+    bool operator<(const number& other) const;
+
+    /**
+     * Checks if the current instance(number) is greater than another(given)
+     * number. To determine this it compares the strings, digit by digit.
+     * @param n - The other number that will be compared with this instance.
+     * @return True if and only if the current instance is strictly greater than
+     * the other given instance.
+     */
+    bool greater_than(const number &n) const;
+
+    /**
+     * @brief operator > Will check if the current number is greater than
+     * another one given.
+     * @see greater_than(const number &n).
+     * @param other - The other number that is compared with the current
+     * instance.
+     * @return True if and only if the current number is strictly greater than
+     * the other one.
+     */
+    bool operator>(const number& other) const;
+
 };
+/**
+ * Makes the number printable to an output stream.
+ * @param os - The output stream where the number should be printed.
+ * @param n - The number that should be printed to that stream.
+ * @return The output stream where we wrote the object.
+ */
+::std::ostream& operator<<(::std::ostream &os, const number &n);
 
 } // namespace math_brain
 

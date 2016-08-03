@@ -65,6 +65,13 @@ public:
     bool operator==(const binary_operator& other) const;
 
 };
+/**
+ * Makes the binary_operator printable to an output stream.
+ * @param os - The output stream where the binary_operator should be printed.
+ * @param bo - The binary_operator that should be printed to that stream.
+ * @return The output stream where we wrote the object.
+ */
+::std::ostream& operator<<(::std::ostream &os, const binary_operator &bo);
 
 } // namespace math_brain
 

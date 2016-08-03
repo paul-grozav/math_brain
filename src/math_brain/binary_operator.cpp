@@ -30,5 +30,10 @@ binary_operator::binary_operator(const char c):
 {
 }
 // ========================================================================== //
+::std::ostream& operator<<(::std::ostream &os, const binary_operator &bo)
+{
+    return os << bo.get_string_representation();
+}
+// ========================================================================== //
 
 } // namespace math_brain

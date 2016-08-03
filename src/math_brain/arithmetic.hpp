@@ -13,15 +13,6 @@ namespace arithmetic
 
 // ========================================================================== //
 /**
- * @brief add - Adds two numbers together and forms a new number.
- * @param a - The left hand side number.
- * @param b - The right hand side number.
- * @return A new number instance that will be created as the sum of the given
- * numbers.
- */
-number add(const number &a, const number &b);
-
-/**
  * @brief add_digits - Adds two digits and the carry in and then sets the result
  * in the third parameter.
  * @param a - The first digit to be part of the sum, the digit should have a
@@ -55,16 +46,47 @@ number add(const number &a, const number &b);
  * // or ...
  * r = {'0', 1}; // start with a carry out and use it as carry in
  * add_digits('1', '8', r); // r will become {'0',1} because of 1+8+(1 carry in)
+ * @throws std::runtime_error if a or b is not a digit between '0' and '9'.
  */
 void add_digits(char a, char b, char *r);
 
 /**
+ * @brief add - Adds two numbers together and forms a new number.
+ * @param a - The left hand side number.
+ * @param b - The right hand side number.
+ * @return A new number instance that will be created as the sum of the given
+ * numbers.
+ */
+number add(const number &a, const number &b);
+// ========================================================================== //
+/**
+ * @brief Checks if digit a is less than digit b.
+ * @param a - The digit that should be less than the other one
+ * @param b - The digit that should be greater than the other one
+ * @return True if and only if a is strictly smaller than b, and false
+ * otherwise.
+ */
+bool digit_less_than(char a, char b);
+// ========================================================================== //
+/**
  * @brief subtract_digits
- * @param a
- * @param b
- * @param r
+ * @param a - first digit
+ * @param b - second digit
+ * @param r - r[0] is the restul and r[1] is the carry in/out.
+ * @throws std::runtime_error if a or b is not a digit between '0' and '9'.
  */
 void subtract_digits(char a, char b, char *r);
+
+/**
+ * @brief subtract - Subtracts two numbers and forms a new number.
+ * @param a - The left hand side number.
+ * @param b - The right hand side number.
+ * @return A new number instance that will be created as the difference of the
+ * given numbers(first minus second).
+ * @throws std::runtime_error if a is strictly smaller than b. Negative numbers
+ * not implemented yet.
+ */
+number subtract(const number &a, const number &b);
 // ========================================================================== //
 
 } // namespace arithmetic

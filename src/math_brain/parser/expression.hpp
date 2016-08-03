@@ -54,11 +54,9 @@ public:
     void print_objects_to_stream(std::ostream& output_stream);
 
     /**
-     * Print objects in expression.
-     * @param output_stream - The output stream where the objects should be
-     * printed.
+     * @return The expression represented as a string.
      */
-    void print(std::ostream& output_stream);
+    std::string get_string_representation() const;
 
     /**
      * @brief get_objects Returns a copy of the vector of mathematical objects
@@ -103,16 +101,6 @@ public:
     bool simplify_addition(std::vector<expression> *steps);
 
     /**
-     * Get the index of the first mathematical object that has gt given object
-     * type.
-     * @param object_type
-     * @param start_index
-     * @return
-     */
-    size_t index_of_object_type(mathematical_object::object_type object_type,
-        size_t start_index);
-
-    /**
      * @brief Will compare two expressions by comparing their string
      * representation and their type.
      * @param other - The other expression that is compared with the current
@@ -132,6 +120,13 @@ public:
     bool operator==(const expression& other) const;
 
 };
+/**
+ * Makes the expression printable to an output stream.
+ * @param os - The output stream where the expression should be printed.
+ * @param ex - The expression that should be printed to that stream.
+ * @return The output stream where we wrote the expression.
+ */
+::std::ostream& operator<<(::std::ostream &os, const expression &ex);
 
 } // namespace parser
 } // namespace math_brain

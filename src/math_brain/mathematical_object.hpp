@@ -71,13 +71,6 @@ public:
     std::string get_string_representation() const;
 
     /**
-     * Print the object to the given output stream.
-     * @param output_stream - The output stream where the object should be
-     * printed.
-     */
-    void print_to_stream(std::ostream& output_stream);
-
-    /**
      * @brief Will compare two mathematical objects by comparing their string
      * representation and their type.
      * @param other - The other mathematical object that is compared with the
@@ -96,7 +89,23 @@ public:
      */
     bool operator==(const mathematical_object& other) const;
 
+    /**
+     * @brief operator != will return the oposite value of ==
+     * @see equals().
+     * @param other - The other mathematical object that is compared with the
+     * current instance.
+     * @return True if and only if the two mathematical objects are NOT equal.
+     */
+    bool operator!=(const mathematical_object& other) const;
+
 };
+/**
+ * Makes the object printable to an output stream.
+ * @param os - The output stream where the object should be printed.
+ * @param o - The object that should be printed to that stream.
+ * @return The output stream where we wrote the object.
+ */
+::std::ostream& operator<<(::std::ostream &os, const mathematical_object &o);
 
 } // namespace math_brain
 
