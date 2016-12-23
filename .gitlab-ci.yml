@@ -16,8 +16,9 @@ build:
   # before_script: 
   #   - apt update && apt -y install make autoconf 
   script: 
-    - [ -d bin ] && rm -Rf bin
-    - mkdir bin && cd bin
+    - if [ -d bin ]; then rm -Rf bin; fi
+    - mkdir bin
+    - cd bin
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
   artifacts:
