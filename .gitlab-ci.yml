@@ -33,7 +33,7 @@ build:
   # to reduce the build time
   cache:
     paths:
-    - "bin\/(.*\/)*a\.o"
+    - "bin/(.*/)*a.o"
 
 # run tests using the binary built before
 #test:
