@@ -22,7 +22,7 @@ build:
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
     - ./math_brain_unit_testing
-    - ls -l CMakeFiles/math_brain.dir
+    - ls -l CMakeFiles/math_brain.dir/src/
     - cd ..
     - bash test_build
   artifacts:
