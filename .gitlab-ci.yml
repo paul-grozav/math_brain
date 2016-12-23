@@ -6,7 +6,7 @@
 # image: gcc
 
 before_script:
-  - apt-get update -qq && apt-get install -y -qq cmake make doxygen
+  - apt-get update -qq && apt-get install -y -qq cmake make doxygen graphviz
 
 build:
   stage: build
@@ -21,10 +21,6 @@ build:
     - cd bin
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
-    - ./math_brain_unit_testing
-    - ls -l CMakeFiles/
-    - cd ..
-    - bash test_build
   artifacts:
     paths:
 #      - bin/math_brain_unit_testing
@@ -36,7 +32,12 @@ build:
     - "bin/CMakeFiles/*.o"
 
 # run tests using the binary built before
-#test:
-#  stage: test
-#  script:
-#    - ./runmytests.sh
+test:
+  stage: test
+  script:
+    - cd bin
+    - ./math_brain_unit_testing
+    - ls -l CMakeFiles/math_brain.dir
+    - cd ..
+    - bash test_build
+
