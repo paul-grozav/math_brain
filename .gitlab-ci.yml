@@ -6,7 +6,7 @@
 # image: gcc
 
 before_script:
-  - apt-get update -qq && apt-get install -y -qq cmake make
+  - apt-get update -qq && apt-get install -y -qq cmake make doxygen
 
 build:
   stage: build
@@ -21,15 +21,19 @@ build:
     - cd bin
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
-    - ls -l
+    - ./math_brain_unit_testing
+    - ls -l CMakeFiles/
+    - cd ..
+    - bash test_build
   artifacts:
     paths:
-      - bin/math_brain_unit_testing
+#      - bin/math_brain_unit_testing
+      - bin/math_brain_app
   # depending on your build setup it's most likely a good idea to cache outputs
   # to reduce the build time
   cache:
     paths:
-    - "bin/*.o"
+    - "bin/CMakeFiles/*.o"
 
 # run tests using the binary built before
 #test:
