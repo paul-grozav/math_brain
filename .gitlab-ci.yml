@@ -6,7 +6,7 @@
 # image: gcc
 
 before_script:
-  - apt-get update -qq && apt-get install -y -qq cmake make doxygen graphviz tree
+  - apt-get update -qq && apt-get install -y -qq cmake make doxygen graphviz
 
 build:
   stage: build
@@ -22,7 +22,6 @@ build:
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
     - ./math_brain_unit_testing
-#    - tree CMakeFiles
     - cd ..
     - bash test_build
   artifacts:
