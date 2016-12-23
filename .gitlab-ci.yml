@@ -21,6 +21,7 @@ build:
     - cd bin
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
+    - ls -l
   artifacts:
     paths:
       - bin/math_brain_unit_testing
