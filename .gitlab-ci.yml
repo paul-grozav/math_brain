@@ -22,7 +22,7 @@ build:
     - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
     - make
     - ./math_brain_unit_testing
-    - tree CMakeFiles
+#    - tree CMakeFiles
     - cd ..
     - bash test_build
   artifacts:
@@ -33,7 +33,7 @@ build:
   # to reduce the build time
   cache:
     paths:
-    - "bin/CMakeFiles/*.o"
+    - "bin\/(.*\/)*a\.o"
 
 # run tests using the binary built before
 #test:
