@@ -16,15 +16,18 @@ build:
   # before_script: 
   #   - apt update && apt -y install make autoconf 
   script: 
-    - cmake -version
-#  artifacts:
-#    paths:
-#      - mybinary
+    - [ -d bin ] && rm -Rf bin
+    - mkdir bin && cd bin
+    - cmake .. -DCMAKE_BUILD_TYPE:STRING=Debug
+    - make
+  artifacts:
+    paths:
+      - bin/math_brain_unit_testing
   # depending on your build setup it's most likely a good idea to cache outputs
   # to reduce the build time
-  # cache:
-  #   paths:
-  #     - "*.o"
+  cache:
+    paths:
+    - "bin/*.o"
 
 # run tests using the binary built before
 #test:
