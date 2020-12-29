@@ -3,7 +3,7 @@
 // ========================================================================== //
 #ifndef MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
 #define MATH_BRAIN__MATHEMATICAL_OBJECT_HPP
-
+// ========================================================================== //
 #include <string> // std::string
 #include <ostream> // std::ostream
 // ========================================================================== //
@@ -21,7 +21,7 @@ protected:
   /**
    * The string representation of the mathematical object.
    */
-  ::std::string _str;
+  ::std::string str;
 
 public:
   /**
@@ -38,7 +38,7 @@ protected:
   /**
    * @brief Type of object the pointer points to.
    */
-  object_type _object_type;
+  object_type object_type;
 
 public:
 

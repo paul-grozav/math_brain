@@ -10,23 +10,23 @@ using namespace ::std;
 // ========================================================================== //
 int main(/*int argc, char **argv*/)
 {
-    cout << "Enter a mathematical expression:" << endl;
-    string input;
-    cin >> input;
-    cout << "Your input: " << input << endl;
-    ::math_brain::parser::expression exp;
-    ::math_brain::parser::expression::parse( input, &exp );
-//    cout << endl << "Expression is made of:" << endl;
-//    exp.print_objects_to_stream(cout);
-    cout << endl << "Solving expression:" << endl;
-    vector<::math_brain::parser::expression> steps;
-    exp.simplify(&steps);
-    cout << exp << endl;
-    for(size_t i=0; i<steps.size(); i++)
-    {
-        cout << "=" << steps[i] << endl;
-    }
-    cout << endl;
-    return 0;
+  cout << "Enter a mathematical expression:" << endl;
+  string input;
+  cin >> input;
+  cout << "Your input: " << input << endl;
+  ::math_brain::parser::expression exp;
+  ::math_brain::parser::expression::parse( input, &exp );
+//  cout << endl << "Expression is made of:" << endl;
+//  exp.print_objects_to_stream(cout);
+  cout << endl << "Solving expression:" << endl;
+  vector<::math_brain::parser::expression> steps;
+  exp.simplify(&steps);
+  cout << exp << endl;
+  for(size_t i=0; i<steps.size(); i++)
+  {
+    cout << "=" << steps[i] << endl;
+  }
+  cout << endl;
+  return 0;
 }
 // ========================================================================== //
