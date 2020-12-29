@@ -1,39 +1,41 @@
-#include "binary_operator.hpp"
+// ========================================================================== //
+// Author: Tancredi-Paul Grozav <paul@grozav.info>
+// ========================================================================== //
+#include "math_brain/binary_operator.hpp"
 
 namespace math_brain
 {
-
 // ========================================================================== //
 binary_operator::binary_operator(std::string &str):
-    math_brain::mathematical_object(str, TYPE_BASIC_ARITHMETIC_OPERATION)
+  math_brain::mathematical_object(str, TYPE_BASIC_ARITHMETIC_OPERATION)
 {
 }
 // ========================================================================== //
 binary_operator::binary_operator(const char c_str[]):
-    math_brain::mathematical_object(c_str, TYPE_BASIC_ARITHMETIC_OPERATION)
+  math_brain::mathematical_object(c_str, TYPE_BASIC_ARITHMETIC_OPERATION)
 {
 }
 // ========================================================================== //
 bool binary_operator::equals(const binary_operator& other) const
 {
-    return _str == other._str;
+  return _str == other._str;
 }
 // ========================================================================== //
 bool binary_operator::operator==(const binary_operator& other) const
 {
-    return equals(other);
+  return equals(other);
 }
 // ========================================================================== //
 binary_operator::binary_operator(const char c):
-    math_brain::mathematical_object(std::string("").append(1, c),
-        TYPE_BASIC_ARITHMETIC_OPERATION)
+  math_brain::mathematical_object(std::string("").append(1, c),
+  TYPE_BASIC_ARITHMETIC_OPERATION)
 {
 }
 // ========================================================================== //
 ::std::ostream& operator<<(::std::ostream &os, const binary_operator &bo)
 {
-    return os << bo.get_string_representation();
+  return os << bo.get_string_representation();
 }
 // ========================================================================== //
-
 } // namespace math_brain
+// ========================================================================== //

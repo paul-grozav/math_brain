@@ -1,5 +1,9 @@
 #!/bin/bash
 # Author: Tancredi-Paul Grozav <paul@grozav.info>
+#
+# docker run -it --name=math-brain-builder -v $(pwd):/mnt:rw debian:10.7
+# apt update && apt-get install -y g++ make cmake nano git
+#
 (
 echo -n "========================================"
 echo "========================================"

@@ -1,26 +1,32 @@
-#include "math_brain/parser/expression.hpp"
-
+// ========================================================================== //
+// Author: Tancredi-Paul Grozav <paul@grozav.info>
+// ========================================================================== //
 #include <iostream>
 #include <string>
 
+#include "math_brain/parser/expression.hpp"
+// ========================================================================== //
+using namespace ::std;
+// ========================================================================== //
 int main(/*int argc, char **argv*/)
 {
-    std::cout << "Enter a mathematical expression:" << std::endl;
-    std::string input;
-    std::cin >> input;
-    std::cout << "Your input: " << input << std::endl;
-    math_brain::parser::expression exp;
-    math_brain::parser::expression::parse( input, &exp );
-//    std::cout << std::endl << "Expression is made of:" << std::endl;
-//    exp.print_objects_to_stream(std::cout);
-    std::cout << std::endl << "Solving expression:" << std::endl;
-    std::vector<math_brain::parser::expression> steps;
+    cout << "Enter a mathematical expression:" << endl;
+    string input;
+    cin >> input;
+    cout << "Your input: " << input << endl;
+    ::math_brain::parser::expression exp;
+    ::math_brain::parser::expression::parse( input, &exp );
+//    cout << endl << "Expression is made of:" << endl;
+//    exp.print_objects_to_stream(cout);
+    cout << endl << "Solving expression:" << endl;
+    vector<::math_brain::parser::expression> steps;
     exp.simplify(&steps);
-    std::cout << exp << std::endl;
+    cout << exp << endl;
     for(size_t i=0; i<steps.size(); i++)
     {
-        std::cout << "=" << steps[i] << std::endl;
+        cout << "=" << steps[i] << endl;
     }
-    std::cout << std::endl;
+    cout << endl;
     return 0;
 }
+// ========================================================================== //

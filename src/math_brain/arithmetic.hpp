@@ -1,7 +1,10 @@
-#ifndef MATH_BRAIN_ARITHMETIC_HPP
-#define MATH_BRAIN_ARITHMETIC_HPP
+// ========================================================================== //
+// Author: Tancredi-Paul Groza <paul@grozav.info>
+// ========================================================================== //
+#ifndef MATH_BRAIN__ARITHMETIC_HPP
+#define MATH_BRAIN__ARITHMETIC_HPP
 
-#include "number.hpp"
+#include "math_brain/number.hpp"
 
 /**
  * math_brain namespace holds all the project logic.
@@ -10,7 +13,6 @@ namespace math_brain
 {
 namespace arithmetic
 {
-
 // ========================================================================== //
 /**
  * @brief add_digits - Adds two digits and the carry in and then sets the result
@@ -88,8 +90,7 @@ void subtract_digits(char a, char b, char *r);
  */
 number subtract(const number &a, const number &b);
 // ========================================================================== //
-
 } // namespace arithmetic
 } // namespace math_brain
-
-#endif // MATH_BRAIN_ARITHMETIC_HPP
+#endif // MATH_BRAIN__ARITHMETIC_HPP
+// ========================================================================== //
