@@ -16,7 +16,7 @@ namespace parser
 bool is_digit(const char c)
 {
   return
-    c == '0'
+       c == '0'
     || c == '1'
     || c == '2'
     || c == '3'
@@ -32,7 +32,7 @@ bool is_digit(const char c)
 bool is_valid_sign(const char c)
 {
   return
-    c == '+'
+       c == '+'
     || c == '-'
     ;
 }

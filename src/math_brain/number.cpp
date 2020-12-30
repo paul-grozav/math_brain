@@ -27,17 +27,17 @@ number::number(const char c_str[]):
 bool number::less_than(const number &n) const
 {
   ::std::string n2_str = n.get_string_representation();
-  size_t n1_str_size = _str.size();
+  size_t n1_str_size = str.size();
   size_t n2_str_size = n2_str.size();
   if(n1_str_size == n2_str_size)
   {// same number of digits
     for(size_t i=0; i<n1_str_size; i++)
     {
-      if(arithmetic::digit_less_than(_str.at(i), n2_str.at(i)))
+      if(arithmetic::digit_less_than(str.at(i), n2_str.at(i)))
       {
         return true;
       }
-      else if(arithmetic::digit_less_than(n2_str.at(i), _str.at(i)))
+      else if(arithmetic::digit_less_than(n2_str.at(i), str.at(i)))
       {
         return false;
       }

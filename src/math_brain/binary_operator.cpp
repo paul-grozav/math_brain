@@ -18,7 +18,7 @@ binary_operator::binary_operator(const char c_str[]):
 // ========================================================================== //
 bool binary_operator::equals(const binary_operator& other) const
 {
-  return _str == other._str;
+  return str == other.str;
 }
 // ========================================================================== //
 bool binary_operator::operator==(const binary_operator& other) const

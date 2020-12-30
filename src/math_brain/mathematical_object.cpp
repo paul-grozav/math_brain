@@ -12,20 +12,18 @@ namespace math_brain
 {
 // ========================================================================== //
 mathematical_object::mathematical_object(::std::string &str, object_type type):
-  str(str)
-  , object_type(type)
+  str(str), type(type)
 {
 }
 // ========================================================================== //
 mathematical_object::mathematical_object(const char c_str[], object_type type):
-  str(string(c_str))
-  , object_type(type)
+  str(string(c_str)), type(type)
 {
 }
 // ========================================================================== //
 mathematical_object::object_type mathematical_object::get_object_type()
 {
-  return object_type;
+  return type;
 }
 // ========================================================================== //
 ::std::string mathematical_object::get_string_representation() const
@@ -35,7 +33,7 @@ mathematical_object::object_type mathematical_object::get_object_type()
 // ========================================================================== //
 bool mathematical_object::equals(const mathematical_object& other) const
 {
-  return str == other.str && object_type == other.object_type;
+  return str == other.str && type == other.type;
 }
 // ========================================================================== //
 bool mathematical_object::operator==(const mathematical_object& other) const

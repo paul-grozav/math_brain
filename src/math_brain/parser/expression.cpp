@@ -95,12 +95,14 @@ void expression::print_objects_to_stream(::std::ostream &output_stream)
 }
 // ========================================================================== //
 bool expression::simplify_addition_and_subtraction(
-  ::std::vector<expression> *steps)
+  ::std::vector< ::std::pair<const ::std::string, expression> > *steps)
 {
+  string step_description = "";
   expression new_expr;
   expression *expr = this;
-  if(steps->size() > 0){
-    expr = &(steps->at( steps->size()-1 ));
+  if(steps->size() > 0)
+  {
+    expr = &(steps->at( steps->size()-1 ).second);
   }
 //  cout << "simplify_addition("; expr->print(cout); cout << ")" << endl;
   size_t size = expr->_objects.size();
@@ -112,9 +114,10 @@ bool expression::simplify_addition_and_subtraction(
       object.get_string_representation() == "+"
     )
     {
-//      cout << "Found: "
-//        << expr->_objects.at(i-1).get_string_representation() << "+"
-//        << expr->_objects.at(i+1).get_string_representation() << endl;
+      step_description = "Evaluating expression: "
+        + expr->_objects.at(i-1).get_string_representation() + "+"
+        + expr->_objects.at(i+1).get_string_representation()
+	+ " and replacing in the original expresion.";
       number new_object = arithmetic::add(
         *(static_cast<number*>(&(expr->_objects.at(i-1)))),
         *(static_cast<number*>(&(expr->_objects.at(i+1))))
@@ -133,7 +136,7 @@ bool expression::simplify_addition_and_subtraction(
 //      new_expr.print(cout);
 //      cout << endl;
 
-      steps->push_back(new_expr);
+      steps->push_back(make_pair(step_description, new_expr));
       return true;
     }
     else if(
@@ -142,9 +145,10 @@ bool expression::simplify_addition_and_subtraction(
       object.get_string_representation() == "-"
     )
     {
-//      cout << "Found: "
-//        << expr->_objects.at(i-1).get_string_representation() << "+"
-//        << expr->_objects.at(i+1).get_string_representation() << endl;
+      step_description = "Evaluating expression: "
+        + expr->_objects.at(i-1).get_string_representation() + "-"
+        + expr->_objects.at(i+1).get_string_representation()
+	+ " and replacing in the original expression.";
       number new_object = arithmetic::subtract(
         *(static_cast<number*>(&(expr->_objects.at(i-1)))),
         *(static_cast<number*>(&(expr->_objects.at(i+1))))
@@ -163,7 +167,7 @@ bool expression::simplify_addition_and_subtraction(
 //      new_expr.print(cout);
 //      cout << endl;
 
-      steps->push_back(new_expr);
+      steps->push_back(make_pair(step_description, new_expr));
       return true;
     }
     else
@@ -174,13 +178,15 @@ bool expression::simplify_addition_and_subtraction(
   return false;
 }
 // ========================================================================== //
-bool expression::simplify_once(::std::vector<expression> *steps)
+bool expression::simplify_once(
+  ::std::vector< ::std::pair<const ::std::string, expression> > *steps)
 {
   return false
     || simplify_addition_and_subtraction(steps);
 }
 // ========================================================================== //
-void expression::simplify(::std::vector<expression> *steps)
+void expression::simplify(
+  ::std::vector< ::std::pair<const ::std::string, expression> > *steps)
 {
   while( simplify_once(steps) )
   {

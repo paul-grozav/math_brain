@@ -27,18 +27,18 @@ public:
   /**
    * Types of mathematical_object.
    */
-  enum object_type
+  typedef enum
   {
       TYPE_UNDEFINED
     , TYPE_NUMBER
     , TYPE_BASIC_ARITHMETIC_OPERATION
-  };
+  } object_type;
 
 protected:
   /**
    * @brief Type of object the pointer points to.
    */
-  object_type object_type;
+  object_type type;
 
 public:
 

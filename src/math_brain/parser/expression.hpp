@@ -4,13 +4,14 @@
 #ifndef MATH_BRAIN__PARSER__EXPRESSION_HPP
 #define MATH_BRAIN__PARSER__EXPRESSION_HPP
 
-#include "math_brain/number.hpp"
-#include "math_brain/mathematical_object.hpp"
-
 #include <ostream> // std::ostream
 #include <string> // std::string
 #include <vector> // std:vector
+#include <utility> // std::pair
 
+#include "math_brain/number.hpp"
+#include "math_brain/mathematical_object.hpp"
+// ========================================================================== //
 namespace math_brain
 {
 namespace parser
@@ -55,7 +56,7 @@ public:
    * @return The expression represented as a string.
    */
   ::std::string get_string_representation() const;
-
+// ========================================================================== //
   /**
    * @brief get_objects Returns a copy of the vector of mathematical objects
    * that are members of this equation.
@@ -65,14 +66,15 @@ public:
    * member of this equation.
    */
   ::std::vector<mathematical_object> get_objects();
-
+// ========================================================================== //
   /**
    * @brief simplify Simplifies the expression by appliying operations.
    * For example: "2+3" is simplified to "5".
    * @param steps - The steps it took to simplify the expression.
    */
-  void simplify(::std::vector<expression> *steps);
-
+  void simplify(
+    ::std::vector< ::std::pair<const ::std::string, expression> > *steps);
+// ========================================================================== //
   /**
    * @brief simplify an expression by one step.
    * @param steps - The steps it took to simplify the expression.
@@ -82,8 +84,9 @@ public:
    * solving 1+2 and copying +3+4.
    * @note maybe we could make this private, it's called by simplify()
    */
-  bool simplify_once(::std::vector<expression> *steps);
-
+  bool simplify_once(
+    ::std::vector< ::std::pair<const ::std::string, expression> > *steps);
+// ========================================================================== //
   /**
    * @brief solve the first addition or subtraction found and copy the rest of
    * the objects.
@@ -97,8 +100,9 @@ public:
    * @note Example: simplify_addition() on "1+2-3+4" might become "3-3+4" by
    * solving 1+2 and copying -3+4.
    */
-  bool simplify_addition_and_subtraction(::std::vector<expression> *steps);
-
+  bool simplify_addition_and_subtraction(
+    ::std::vector< ::std::pair< const ::std::string, expression> > *steps);
+// ========================================================================== //
   /**
    * @brief Will compare two expressions by comparing their string
    * representation and their type.

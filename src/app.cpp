@@ -19,12 +19,13 @@ int main(/*int argc, char **argv*/)
 //  cout << endl << "Expression is made of:" << endl;
 //  exp.print_objects_to_stream(cout);
   cout << endl << "Solving expression:" << endl;
-  vector<::math_brain::parser::expression> steps;
+  vector< pair<const string, ::math_brain::parser::expression> > steps;
   exp.simplify(&steps);
   cout << exp << endl;
   for(size_t i=0; i<steps.size(); i++)
   {
-    cout << "=" << steps[i] << endl;
+    cout << steps[i].first << endl
+      << "=" << steps[i].second << endl;
   }
   cout << endl;
   return 0;
